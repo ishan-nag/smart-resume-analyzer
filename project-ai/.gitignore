@@ -1,0 +1,28 @@
+# ── Environment Variables (NEVER push to GitHub) ──
+.env
+
+# ── Virtual Environment ──
+.venv/
+venv/
+env/
+
+# ── Python Cache ──
+__pycache__/
+*.py[cod]
+*.pyo
+
+# ── Output files (generated at runtime) ──
+output/
+
+# ── Uploaded resumes (may contain personal data) ──
+data/sample_resume.pdf
+
+# ── VS Code settings ──
+.vscode/
+
+# ── OS files ──
+.DS_Store
+Thumbs.db
+
+#AI folder
+.ai/

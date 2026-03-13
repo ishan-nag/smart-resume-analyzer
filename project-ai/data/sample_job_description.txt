@@ -1,0 +1,54 @@
+Job Title: Software Engineer, Infrastructure & Systems
+Company: Google LLC
+Location: Mountain View, CA / New York, NY / Remote Eligible
+Level: L4 / L5 (Mid to Senior)
+
+About the Role:
+At Google, we build systems that serve billions of users across the globe. We are looking for a Software Engineer who thrives at the intersection of systems thinking, scalable infrastructure, and elegant software design. You will join a team that owns mission-critical services — services that must be fast, reliable, and available 24/7 at planetary scale.
+
+This is not a feature factory role. You will architect, build, and own systems end-to-end. You will be expected to think deeply about correctness, performance, and long-term maintainability. Your code will run in production the day it ships.
+
+Responsibilities:
+- Design and implement large-scale distributed systems that serve millions to billions of requests per day
+- Own the full lifecycle of systems: design, implementation, testing, deployment, monitoring, and incident response
+- Write high-quality, production-grade code with a strong emphasis on correctness, performance, and reliability
+- Define and drive technical roadmaps in collaboration with senior engineers and engineering leads
+- Conduct thorough code reviews and establish engineering best practices across the team
+- Instrument systems with observability tooling — metrics, tracing, logging — and respond to production incidents with urgency and rigor
+- Identify and eliminate performance bottlenecks through profiling, benchmarking, and systematic analysis
+- Collaborate cross-functionally with product, SRE, security, and data engineering teams
+- Mentor junior engineers and contribute to a culture of technical excellence
+
+Minimum Qualifications:
+- Bachelor's or Master's degree in Computer Science, Electrical Engineering, or a related technical field
+- 2+ years of software development experience in one or more of: Python, C++, Java, Go
+- Strong foundation in data structures, algorithms, and systems design
+- Experience designing and building distributed systems or large-scale backend services
+- Solid understanding of operating systems, networking, and computer architecture fundamentals
+- Experience with version control (Git), code review workflows, and CI/CD pipelines
+- Demonstrated ability to write clean, testable, and well-documented code
+
+Preferred Qualifications:
+- Experience with systems programming — device drivers, OS internals, kernel modules, or embedded systems
+- Familiarity with machine learning pipelines, model deployment, or ML infrastructure
+- Experience with containerization (Docker, Kubernetes) and cloud infrastructure (GCP, AWS, or Azure)
+- Knowledge of microservices architecture, service mesh, and inter-service communication patterns
+- Contributions to open-source projects or published research in a relevant technical area
+- Experience with databases at scale — both relational (PostgreSQL, MySQL) and NoSQL (Bigtable, MongoDB, Redis)
+- Familiarity with observability tools — Prometheus, Grafana, OpenTelemetry, or equivalent
+- Experience working in an Agile environment with sprint planning, retrospectives, and iterative delivery
+
+What We Look For:
+Google engineers are not measured by lines of code. We look for people who can break down ambiguous problems, communicate clearly under uncertainty, and make principled engineering tradeoffs. We value intellectual curiosity, a bias toward simplicity, and the ability to think at scale before writing a single line of code.
+
+Technical Skills:
+Python, C, C++, Java, Go, Distributed Systems, REST API Design, gRPC, SQL, NoSQL, Docker, Kubernetes, Git, CI/CD, Linux, System Design, Data Structures & Algorithms, Machine Learning (preferred), Cloud Infrastructure (GCP preferred)
+
+What We Offer:
+- Highly competitive compensation with equity (RSUs)
+- World-class engineering culture with a flat review process
+- Access to Google's internal tooling, infrastructure, and research community
+- Opportunities to work on products used by billions of people
+- Strong focus on career growth, internal mobility, and technical mentorship
+- Comprehensive health, dental, and vision benefits
+- Flexible work arrangements including hybrid and remote options

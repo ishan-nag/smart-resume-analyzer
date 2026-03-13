@@ -1,0 +1,20 @@
+# requirements.txt — AI Module Dependencies
+# ==========================================
+# Install all dependencies with:
+#     pip install -r requirements.txt
+#
+# Make sure your virtual environment is activated first:
+#     Windows: .\.venv\Scripts\Activate.ps1
+#     Mac/Linux: source .venv/bin/activate
+
+# ── Groq LLM API client ──
+# Used by: question_generator, answer_evaluator, ats_scorer, shared/
+groq>=0.9.0
+
+# ── Load API keys from .env file ──
+# Used by: shared/groq_client.py
+python-dotenv>=1.0.0
+
+# ── PDF text extraction ──
+# Used by: resume_parser
+pdfplumber>=0.10.0

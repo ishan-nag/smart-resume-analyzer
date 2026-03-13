@@ -1,0 +1,18 @@
+﻿# Python
+project-ai/.venv/
+project-ai/output/
+**/__pycache__/
+**/*.pyc
+project-ai/.env
+
+# Java
+project-backend/target/
+project-backend/.env
+
+# Frontend
+project-frontend/node_modules/
+project-frontend/.env
+
+# OS
+.DS_Store
+Thumbs.db
