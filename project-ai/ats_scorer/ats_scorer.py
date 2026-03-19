@@ -40,7 +40,9 @@ Output format:
     }
 
 For backend integration (Java Spring Boot):
-    - Call score_resume(parsed_resume, job_description)
+    - NEW way: score_resume(parsed_resume, role_id="ml_engineer")
+    - OLD way: score_resume(parsed_resume, job_description="raw text...")
+    - Both ways work — old way is fully backward compatible
     - Pass the dict from resume_parser directly as parsed_resume
     - Returns a dict → serialize with json.dumps() to send as JSON
     - Optionally call save_ats_result(result, output_path) to persist
@@ -63,6 +65,9 @@ try:
     from .prompt_templates import get_combined_llm_scores_prompt
 except ImportError:
     from prompt_templates import get_combined_llm_scores_prompt
+
+# ── Import job_roles helpers (used when role_id is passed instead of job_description) ──
+from job_roles.job_roles import get_role_by_id, build_job_description
 
 
 # ─────────────────────────────────────────────
@@ -252,10 +257,17 @@ def _call_llm_for_all_scores(
 # SECTION: Main Score Function
 # ─────────────────────────────────────────────
 
-def score_resume(parsed_resume: dict, job_description: str) -> dict:
+def score_resume(
+    parsed_resume: dict,
+    job_description: str = None,
+    role_id: str = None
+) -> dict:
     """
     Main function to score a resume against a job description.
     This is the PRIMARY function the backend should call.
+
+    Accepts EITHER a role_id OR a raw job_description string.
+    Both cannot be None at the same time.
 
     Uses 2 steps:
         Step 1 — Keyword match (no API call, instant)
@@ -272,8 +284,17 @@ def score_resume(parsed_resume: dict, job_description: str) -> dict:
                 - "experience" (str)  — for experience match
                 - "education"  (str)  — for education match
 
-        job_description (str):
-            The full text of the job description.
+        job_description (str) [optional]:
+            The full text of the job description as a plain string.
+            Use this for custom job descriptions not in job_roles.json.
+            Either job_description or role_id must be provided.
+
+        role_id (str) [optional]:
+            The unique role identifier from job_roles.json.
+            Example: "ml_engineer", "frontend_engineer"
+            If provided, job_description is built automatically from
+            job_roles.json — no need to pass job_description manually.
+            Either role_id or job_description must be provided.
 
     Returns:
         dict: A structured ATS scoring result.
@@ -296,24 +317,35 @@ def score_resume(parsed_resume: dict, job_description: str) -> dict:
             "error": "Reason for failure"
         }
 
-    Example usage (Python):
-        from resume_parser import parse_resume
+    Example usage — new way (recommended):
         from ats_scorer.ats_scorer import score_resume
+        result = score_resume(parsed_resume, role_id="ml_engineer")
 
-        resume   = parse_resume("data/sample_resume.pdf")
-        job_desc = open("data/sample_job_description.txt").read()
-        result   = score_resume(resume, job_desc)
-        print(result["overall_score"])
-        print(result["recommendation"])
+    Example usage — old way (still works):
+        from ats_scorer.ats_scorer import score_resume
+        result = score_resume(parsed_resume, job_description="We are looking for...")
     """
 
     # ── Step 1: Validate inputs ──
     if not parsed_resume:
         return {"error": "parsed_resume is empty or None."}
-    if not job_description or not job_description.strip():
-        return {"error": "job_description is empty or None."}
 
-    # ── Step 2: Extract fields ──
+    # ── Step 2: Resolve job_description from role_id if not provided directly ──
+    if job_description is None and role_id is None:
+        return {"error": "Either job_description or role_id must be provided."}
+
+    if role_id is not None:
+        # Look up the role from job_roles.json and build a JD string from it
+        role = get_role_by_id(role_id)
+        if "error" in role:
+            return {"error": f"Invalid role_id: '{role_id}'. {role['error']}"}
+        job_description = build_job_description(role)
+        print(f"[ATSScorer] role_id='{role_id}' resolved to job description.")
+
+    if not job_description or not job_description.strip():
+        return {"error": "job_description is empty after resolving from role_id."}
+
+    # ── Step 3: Extract fields from parsed resume ──
     skills     = parsed_resume.get("skills", [])
     raw_text   = parsed_resume.get("raw_text", "")
     experience = parsed_resume.get("experience", "")
@@ -326,7 +358,7 @@ def score_resume(parsed_resume: dict, job_description: str) -> dict:
     if not education.strip():
         education = raw_text
 
-    # ── Step 3: Get shared Groq client ──
+    # ── Step 4: Get shared Groq client ──
     try:
         client = get_groq_client()
     except ValueError as e:
@@ -335,11 +367,11 @@ def score_resume(parsed_resume: dict, job_description: str) -> dict:
     print("[ATSScorer] Starting ATS scoring...")
     breakdown = {}
 
-    # ── Step 4: Keyword Match (no API call) ──
+    # ── Step 5: Keyword Match (no API call) ──
     print("[ATSScorer] Scoring keyword match...")
     breakdown["keyword_match"] = score_keyword_match(skills, job_description)
 
-    # ── Step 5: Single LLM call for all 3 remaining scores ──
+    # ── Step 6: Single LLM call for all 3 remaining scores ──
     print("[ATSScorer] Scoring semantic, experience, and education match via single Groq call...")
     llm_scores = _call_llm_for_all_scores(
         client, raw_text, experience, education, job_description
@@ -348,7 +380,7 @@ def score_resume(parsed_resume: dict, job_description: str) -> dict:
     breakdown["experience_match"] = llm_scores["experience_match"]
     breakdown["education_match"]  = llm_scores["education_match"]
 
-    # ── Step 6: Weighted overall score ──
+    # ── Step 7: Weighted overall score ──
     overall_score = round(sum(
         breakdown[k]["score"] * WEIGHTS[k] for k in WEIGHTS
     ), 1)
@@ -391,15 +423,6 @@ def save_ats_result(result: dict, output_path: str = "output/ats_result.json") -
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-    JOB_DESCRIPTION_PATH = "data/sample_job_description.txt"
-
-    # ── Load job description ──
-    if not os.path.exists(JOB_DESCRIPTION_PATH):
-        job_description = "We are looking for a Software Engineer with full-stack development experience."
-    else:
-        with open(JOB_DESCRIPTION_PATH, "r", encoding="utf-8") as f:
-            job_description = f.read()
-
     # ── Auto-detect all parsed resume JSON files ──
     # Matches: output/parsed_resume.json, output/parsed_resume_1.json, etc.
     resume_files = sorted(glob.glob("output/parsed_resume*.json"))
@@ -419,13 +442,14 @@ if __name__ == "__main__":
         output_path = os.path.join("output", suffix)
 
         print(f"\n{'='*60}")
-        print(f"[ATSScorer] Scoring: {resume_path}")
+        print(f"[ATSScorer] Scoring: {resume_path} against role_id='ml_engineer'")
         print(f"{'='*60}")
 
         with open(resume_path, "r", encoding="utf-8") as f:
             parsed_resume = json.load(f)
 
-        result = score_resume(parsed_resume, job_description)
+        # ── Test new way: pass role_id instead of raw job_description ──
+        result = score_resume(parsed_resume, role_id="ml_engineer")
 
         if "error" in result:
             print(f"[ATSScorer] FAILED: {result['error']}")

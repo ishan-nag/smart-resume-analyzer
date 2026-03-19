@@ -6,6 +6,7 @@ ALL modules in the AI system:
     - question_generator
     - answer_evaluator
     - ats_scorer
+    - resume_analyzer
 
 Instead of each module creating its own Groq client, they all
 import from here. This means:
@@ -15,7 +16,8 @@ import from here. This means:
 
 For backend integration:
     - This module is internal — backend does NOT call this directly
-    - It is used automatically by question_generator, answer_evaluator, ats_scorer
+    - It is used automatically by question_generator, answer_evaluator,
+      ats_scorer, and resume_analyzer
 
 Dependencies:
     pip install groq python-dotenv
@@ -41,8 +43,8 @@ def get_groq_client() -> Groq:
     Creates the client only once (singleton pattern) and reuses it.
 
     This function is called by question_generator, answer_evaluator,
-    and ats_scorer — they should all import from here instead of
-    creating their own clients.
+    ats_scorer, and resume_analyzer — they should all import from here
+    instead of creating their own clients.
 
     Returns:
         Groq: An authenticated Groq client instance.
@@ -95,7 +97,6 @@ def reset_groq_client() -> None:
     print("[GroqClient] Groq client reset.")
 
 
-
 # Model Configuration
 
 # Default model used across all modules
@@ -119,5 +120,10 @@ MODEL_CONFIGS = {
         "model":       DEFAULT_MODEL,
         "temperature": 0.3,     # Lower temperature for consistent scoring
         "max_tokens":  256,
+    },
+    "resume_analyzer": {
+        "model":       DEFAULT_MODEL,
+        "temperature": 0.3,     # Lower temperature for consistent evaluation
+        "max_tokens":  1500,    # Higher limit — batches ATS + quality + feedback
     },
 }
