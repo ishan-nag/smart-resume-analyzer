@@ -77,7 +77,7 @@ smart-resume-analyzer/
 
 ### Step 1 — Clone the repository to your Desktop
 
-Open PowerShell or Git Bash and run:
+Open a terminal (Command Prompt, PowerShell, or Git Bash) and run:
 
 ```bash
 cd Desktop
@@ -85,7 +85,7 @@ git clone https://github.com/ishan-nag/smart-resume-analyzer.git
 cd smart-resume-analyzer
 ```
 
-Your folder on Desktop will look like:
+Your folder structure on Desktop will look like:
 
 ```
 Desktop/
@@ -98,6 +98,8 @@ Desktop/
 ---
 
 ### Step 2 — Work inside your own folder only
+
+Each teammate works only in their own subfolder:
 
 | Teammate | Your folder |
 |---|---|
@@ -127,6 +129,8 @@ git checkout -b ai/resume-analyzer-module
 
 ### Step 4 — Make your changes, then commit
 
+After making changes inside your folder:
+
 ```bash
 # Check what files you changed
 git status
@@ -144,31 +148,35 @@ git commit -m "Add resume upload endpoint to backend"
 
 ```bash
 git push origin your-branch-name
+
+# Example:
+git push origin backend/resume-upload-api
 ```
 
 ---
 
-### Step 6 — Open a Pull Request to main
+### Step 6 — Open a Pull Request (PR) to main
 
-1. Go to https://github.com/ishan-nag/smart-resume-analyzer
-2. Click **"Compare & pull request"**
-3. Set base branch to `main`, compare branch to your branch
+1. Go to the repository on GitHub: https://github.com/ishan-nag/smart-resume-analyzer
+2. You will see a prompt: **"Compare & pull request"** — click it
+3. Set the base branch to `main` and the compare branch to your branch
 4. Write a short title and description of what you changed
 5. Click **"Create pull request"**
+6. The repo host (Ishan) will review and merge it
 
-> Do NOT merge your own PR. Wait for the host (Ishan) to review and approve it.
+> Do NOT merge your own PR. Wait for the host to review and approve it.
 
 ---
 
 ### Step 7 — Keep your local repo up to date
 
-Before starting work each day:
+Before starting work each day, pull the latest changes from main:
 
 ```bash
 git checkout main
 git pull origin main
 
-# Switch back to your branch and bring in the latest changes
+# Switch back to your branch and bring in the latest main changes
 git checkout your-branch-name
 git merge main
 ```
@@ -182,53 +190,53 @@ git commit -m "Resolve merge conflicts"
 
 ---
 
-## AI Module Setup
+## AI Module Setup (for AI/ML teammate only)
 
-You need Python 3.10+ and pip installed.
+### Requirements
+
+- Python 3.10 or higher
+- pip
+
+### Installation
 
 ```powershell
-# 1. Go into the AI module folder
-cd C:\Users\User\OneDrive\Desktop\smart-resume-analyzer\project-ai
+# Go into the AI module folder
+cd Desktop\smart-resume-analyzer\project-ai
 
-# 2. Create and activate a virtual environment
+# Create a virtual environment
 python -m venv .venv
 
-# Windows
+# Activate it (Windows PowerShell)
 .\.venv\Scripts\Activate.ps1
-# Mac/Linux
+
+# Activate it (Mac/Linux)
 source .venv/bin/activate
 
-# 3. Install dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-# 4. Set up your API key
-copy .env.example .env       # Windows
-cp .env.example .env         # Mac/Linux
+# Set up your API key
+copy .env.example .env
 ```
 
 Open `.env` and add your Groq API key:
+
 ```
 GROQ_API_KEY=your_key_here
 ```
 
 Get a free key at https://console.groq.com
 
-> Never push `.env` to GitHub. It's already in `.gitignore`.
-
-> Every time you open a new terminal, activate the venv before running anything:
-> ```powershell
-> cd C:\Users\User\OneDrive\Desktop\smart-resume-analyzer\project-ai
-> .\.venv\Scripts\Activate.ps1
-> ```
-> You will see `(.venv)` at the start of your terminal line when it is active.
+> Never push `.env` to GitHub. It is already in `.gitignore`.
 
 ---
 
-## Running the Modules
+## Running the AI Modules
 
 Always run from the `project-ai/` folder, never from inside a subfolder.
 
 ```powershell
+# Run in this order:
 python -m resume_parser.resume_parser
 python -m job_roles.job_roles
 python -m ats_scorer.ats_scorer
@@ -270,14 +278,14 @@ Every AI function returns a plain Python dict. Serialize it with `json.dumps()` 
 The backend integration flow is:
 
 ```
-1. parse_resume(pdf_path)                         → parsed_resume    [1 LLM call]
-2. get_all_roles()                                → roles list       [0 LLM calls]
+1. parse_resume(pdf_path)                        → parsed_resume       [1 LLM call]
+2. get_all_roles()                               → roles list          [0 LLM calls]
 3. for each role_id: analyze_resume(parsed_resume, role_id)
-                                                  → role_result      [1 LLM call each]
+                                                 → role_result         [1 LLM call each]
 4. generate_upgrade_tip(all_role_results, parsed_resume)
-                                                  → upgrade_tip      [1 LLM call]
+                                                 → upgrade_tip         [1 LLM call]
 5. best_match = max(all_role_results,
-       key=lambda r: r["ats"]["overall_score"])   → best match role  [0 LLM calls]
+       key=lambda r: r["ats"]["overall_score"])  → best match role     [0 LLM calls]
 6. Return full JSON to frontend
 ```
 
@@ -329,8 +337,8 @@ roles = get_all_roles()
 Returns:
 ```json
 [
-    {"id": "ml_engineer",      "title": "Machine Learning Engineer", "category": "Data & AI",           "experience_level": "Mid-level"},
-    {"id": "backend_engineer", "title": "Backend Engineer",          "category": "Software Engineering", "experience_level": "Mid-level"}
+    {"id": "ml_engineer",  "title": "Machine Learning Engineer", "category": "Data & AI",          "experience_level": "Mid-level"},
+    {"id": "backend_engineer", "title": "Backend Engineer",      "category": "Software Engineering", "experience_level": "Mid-level"}
 ]
 ```
 
@@ -342,7 +350,7 @@ Returns:
 
 ### 3. Resume Analyzer — PRIMARY MODULE
 
-Analyzes a resume against a specific job role. Call once per role — the backend loops over selected roles.
+Analyzes a resume against a specific job role. Call once per role. The backend loops over selected roles.
 
 ```python
 from resume_analyzer import analyze_resume, generate_upgrade_tip
@@ -364,7 +372,7 @@ Returns:
         "recommendation": "Good Match",
         "breakdown": {
             "semantic_match":   {"score": 80, "feedback": "Strong backend experience but lacks cloud skills."},
-            "experience_match": {"score": 70, "feedback": "2 years relevant, role requires 3-5."},
+            "experience_match": {"score": 70, "feedback": "2 years relevant experience, role requires 3-5."},
             "education_match":  {"score": 85, "feedback": "B.Tech Computer Science matches the requirement."}
         }
     },
@@ -378,10 +386,10 @@ Returns:
         "breakdown": {"format": 75, "clarity": 70, "impact": 68, "brevity": 80}
     },
     "section_feedback": {
-        "experience": {"score": 75, "feedback": "Good range but lacks metrics.",  "improvements": ["Add quantifiable achievements"]},
-        "education":  {"score": 90, "feedback": "Degree is well-aligned.",        "improvements": []},
-        "summary":    {"score": 60, "feedback": "Too generic.",                   "improvements": ["Tailor to ML roles", "Mention top tools"]},
-        "skills":     {"score": 80, "feedback": "Strong core skills listed.",     "improvements": ["Add MLflow"]}
+        "experience": {"score": 75, "feedback": "Good range of projects but lacks metrics.", "improvements": ["Add quantifiable achievements"]},
+        "education":  {"score": 90, "feedback": "Degree is well-aligned.", "improvements": []},
+        "summary":    {"score": 60, "feedback": "Too generic.", "improvements": ["Tailor to ML roles", "Mention top tools"]},
+        "skills":     {"score": 80, "feedback": "Strong core skills listed.", "improvements": ["Add MLflow"]}
     }
 }
 ```
@@ -394,9 +402,10 @@ On failure: `{"error": "Reason for failure"}`
 
 ### 4. Upgrade Tip Generator
 
-Call ONCE after all `analyze_resume()` calls are done.
+Call ONCE after all `analyze_resume()` calls are done. Takes all role results and returns a single upgrade tip paragraph.
 
 ```python
+# After looping over all roles:
 tip = generate_upgrade_tip(all_role_results, parsed_resume)
 ```
 
@@ -410,13 +419,13 @@ Returns:
 }
 ```
 
-**API calls: 1 total**
+**API calls: 1 total (called once, not per role)**
 
 ---
 
 ### 5. ATS Scorer (standalone)
 
-Already used internally by `analyze_resume()`. Backend only needs this if calling standalone.
+Scores a resume against a role. Already used internally by `analyze_resume()` — backend does not need to call this separately unless needed standalone.
 
 ```python
 from ats_scorer import score_resume
@@ -506,7 +515,7 @@ project-ai/
 │   ├── groq_client.py
 │   └── retry_handler.py
 ├── .env                      ← your API key, never push this
-├── .env.example              ← safe to push, no real key inside
+├── .env.example              ← safe to push, no real key
 ├── .gitignore
 ├── README.md
 └── requirements.txt
@@ -530,7 +539,7 @@ project-ai/
 
 ## Data Privacy
 
-This AI module is completely stateless between sessions. Every API call generates a fresh prompt with only the current candidate's data — the LLM has zero knowledge of any previous resumes or candidates.
+This AI module is completely stateless between sessions. There is no accumulated history passed to the LLM — every API call generates a fresh prompt with only the current candidate's data. The LLM has zero knowledge of any previous resumes or candidates.
 
 **Important for backend:** The `output/` JSON files are overwritten on every run. Always process a fresh upload for each candidate and never read leftover files from a previous session.
 
