@@ -1,0 +1,402 @@
+{
+    "roles": [
+        {
+            "id": "software_engineer",
+            "title": "Software Engineer",
+            "category": "Software Engineering",
+            "experience_level": "Mid-level",
+            "description": "Design, develop, and maintain scalable software systems. Work across the full development lifecycle from requirements to deployment. Collaborate with cross-functional teams to deliver high-quality products.",
+            "required_skills": [
+                "python", "java", "javascript", "data structures", "algorithms",
+                "object oriented programming", "git", "sql", "rest api", "system design"
+            ],
+            "nice_to_have_skills": [
+                "docker", "kubernetes", "aws", "microservices", "ci/cd"
+            ]
+        },
+        {
+            "id": "frontend_engineer",
+            "title": "Frontend Engineer",
+            "category": "Software Engineering",
+            "experience_level": "Mid-level",
+            "description": "Build responsive and performant user interfaces for web applications. Translate UI/UX designs into clean, maintainable code. Optimize for cross-browser compatibility and accessibility.",
+            "required_skills": [
+                "javascript", "typescript", "react", "html", "css",
+                "rest api", "git", "responsive design", "tailwind css", "figma"
+            ],
+            "nice_to_have_skills": [
+                "next.js", "vue", "angular", "graphql", "webpack"
+            ]
+        },
+        {
+            "id": "backend_engineer",
+            "title": "Backend Engineer",
+            "category": "Software Engineering",
+            "experience_level": "Mid-level",
+            "description": "Design and build server-side systems, APIs, and databases. Ensure reliability, scalability, and security of backend services. Integrate with third-party services and internal microservices.",
+            "required_skills": [
+                "python", "java", "node.js", "sql", "rest api",
+                "postgresql", "mongodb", "docker", "git", "system design"
+            ],
+            "nice_to_have_skills": [
+                "redis", "kafka", "microservices", "kubernetes", "aws"
+            ]
+        },
+        {
+            "id": "fullstack_engineer",
+            "title": "Full Stack Engineer",
+            "category": "Software Engineering",
+            "experience_level": "Mid-level",
+            "description": "Develop both client-side and server-side components of web applications. Own features end-to-end from database schema to UI. Bridge the gap between frontend and backend teams.",
+            "required_skills": [
+                "javascript", "typescript", "react", "node.js", "python",
+                "sql", "rest api", "git", "html", "css"
+            ],
+            "nice_to_have_skills": [
+                "next.js", "docker", "postgresql", "graphql", "aws"
+            ]
+        },
+        {
+            "id": "systems_engineer",
+            "title": "Systems Engineer",
+            "category": "Software Engineering",
+            "experience_level": "Senior",
+            "description": "Design and maintain complex software and hardware systems. Ensure system reliability, performance, and scalability. Work on low-level systems, networking, and distributed infrastructure.",
+            "required_skills": [
+                "c", "c++", "linux", "unix", "bash",
+                "system design", "networking", "python", "git", "algorithms"
+            ],
+            "nice_to_have_skills": [
+                "rust", "go", "kubernetes", "docker", "terraform"
+            ]
+        },
+        {
+            "id": "embedded_engineer",
+            "title": "Embedded Software Engineer",
+            "category": "Software Engineering",
+            "experience_level": "Mid-level",
+            "description": "Develop software for embedded systems and hardware devices. Write low-level firmware and drivers. Optimize performance for resource-constrained environments.",
+            "required_skills": [
+                "c", "c++", "embedded systems", "microcontrollers", "rtos",
+                "linux", "bash", "debugging", "hardware interfacing", "git"
+            ],
+            "nice_to_have_skills": [
+                "python", "assembly", "iot", "bluetooth", "can bus"
+            ]
+        },
+
+        {
+            "id": "data_scientist",
+            "title": "Data Scientist",
+            "category": "Data & AI",
+            "experience_level": "Mid-level",
+            "description": "Analyze large datasets to extract actionable insights and build predictive models. Apply statistical methods and machine learning techniques to solve business problems. Communicate findings to non-technical stakeholders.",
+            "required_skills": [
+                "python", "machine learning", "statistical modeling", "pandas",
+                "numpy", "scikit-learn", "sql", "data analysis", "matplotlib", "r"
+            ],
+            "nice_to_have_skills": [
+                "tensorflow", "pytorch", "spark", "tableau", "aws"
+            ]
+        },
+        {
+            "id": "ml_engineer",
+            "title": "Machine Learning Engineer",
+            "category": "Data & AI",
+            "experience_level": "Mid-level",
+            "description": "Build, train, and deploy machine learning models at scale. Design ML pipelines and infrastructure for production environments. Bridge the gap between data science research and engineering systems.",
+            "required_skills": [
+                "python", "machine learning", "deep learning", "pytorch",
+                "tensorflow", "scikit-learn", "docker", "sql", "git", "model deployment"
+            ],
+            "nice_to_have_skills": [
+                "kubernetes", "mlflow", "airflow", "aws", "spark"
+            ]
+        },
+        {
+            "id": "data_engineer",
+            "title": "Data Engineer",
+            "category": "Data & AI",
+            "experience_level": "Mid-level",
+            "description": "Build and maintain data pipelines, warehouses, and ETL processes. Ensure data quality, availability, and reliability across the organization. Enable data teams to access clean, structured data at scale.",
+            "required_skills": [
+                "python", "sql", "spark", "airflow", "postgresql",
+                "mongodb", "aws", "docker", "git", "data pipelines"
+            ],
+            "nice_to_have_skills": [
+                "kafka", "dbt", "snowflake", "kubernetes", "scala"
+            ]
+        },
+        {
+            "id": "ai_research_engineer",
+            "title": "AI Research Engineer",
+            "category": "Data & AI",
+            "experience_level": "Senior",
+            "description": "Conduct applied AI research and implement novel algorithms and architectures. Publish findings and translate research into production-ready systems. Stay current with the latest advances in AI/ML literature.",
+            "required_skills": [
+                "python", "deep learning", "pytorch", "machine learning", "nlp",
+                "computer vision", "statistical modeling", "research", "git", "hugging face"
+            ],
+            "nice_to_have_skills": [
+                "tensorflow", "cuda", "distributed training", "transformers", "aws"
+            ]
+        },
+        {
+            "id": "data_analyst",
+            "title": "Data Analyst",
+            "category": "Data & AI",
+            "experience_level": "Entry-level",
+            "description": "Collect, clean, and analyze data to support business decisions. Create dashboards and visualizations to communicate insights. Work closely with product and business teams.",
+            "required_skills": [
+                "sql", "python", "data analysis", "excel", "pandas",
+                "matplotlib", "seaborn", "tableau", "statistical modeling", "r"
+            ],
+            "nice_to_have_skills": [
+                "power bi", "numpy", "google analytics", "looker", "airflow"
+            ]
+        },
+
+        {
+            "id": "devops_engineer",
+            "title": "DevOps Engineer",
+            "category": "Infrastructure & Cloud",
+            "experience_level": "Mid-level",
+            "description": "Automate infrastructure provisioning, deployment pipelines, and monitoring. Bridge the gap between development and operations. Ensure reliability and scalability of production systems.",
+            "required_skills": [
+                "docker", "kubernetes", "ci/cd", "jenkins", "terraform",
+                "aws", "linux", "bash", "git", "ansible"
+            ],
+            "nice_to_have_skills": [
+                "python", "prometheus", "grafana", "helm", "azure"
+            ]
+        },
+        {
+            "id": "sre",
+            "title": "Site Reliability Engineer",
+            "category": "Infrastructure & Cloud",
+            "experience_level": "Senior",
+            "description": "Ensure high availability and performance of production systems. Define and enforce SLOs, SLAs, and error budgets. Reduce toil through automation and improve system observability.",
+            "required_skills": [
+                "linux", "python", "kubernetes", "docker", "monitoring",
+                "ci/cd", "aws", "bash", "terraform", "system design"
+            ],
+            "nice_to_have_skills": [
+                "prometheus", "grafana", "golang", "chaos engineering", "ansible"
+            ]
+        },
+        {
+            "id": "cloud_engineer",
+            "title": "Cloud Engineer",
+            "category": "Infrastructure & Cloud",
+            "experience_level": "Mid-level",
+            "description": "Design, implement, and manage cloud infrastructure across AWS, Azure, or GCP. Ensure security, scalability, and cost efficiency of cloud resources. Migrate on-premise workloads to the cloud.",
+            "required_skills": [
+                "aws", "azure", "gcp", "terraform", "docker",
+                "kubernetes", "linux", "networking", "ci/cd", "python"
+            ],
+            "nice_to_have_skills": [
+                "ansible", "cloudformation", "security", "helm", "bash"
+            ]
+        },
+        {
+            "id": "platform_engineer",
+            "title": "Platform Engineer",
+            "category": "Infrastructure & Cloud",
+            "experience_level": "Senior",
+            "description": "Build and maintain internal developer platforms and tooling. Abstract infrastructure complexity so product teams can ship faster. Own the developer experience and internal platform reliability.",
+            "required_skills": [
+                "kubernetes", "docker", "terraform", "ci/cd", "python",
+                "aws", "linux", "microservices", "git", "system design"
+            ],
+            "nice_to_have_skills": [
+                "helm", "go", "service mesh", "prometheus", "vault"
+            ]
+        },
+        {
+            "id": "infrastructure_engineer",
+            "title": "Infrastructure Engineer",
+            "category": "Infrastructure & Cloud",
+            "experience_level": "Mid-level",
+            "description": "Design and manage physical and virtual infrastructure including servers, networks, and storage systems. Ensure uptime, security, and performance of core IT infrastructure.",
+            "required_skills": [
+                "linux", "networking", "aws", "terraform", "bash",
+                "docker", "ansible", "monitoring", "git", "virtualization"
+            ],
+            "nice_to_have_skills": [
+                "kubernetes", "python", "vmware", "cisco", "storage systems"
+            ]
+        },
+
+        {
+            "id": "android_engineer",
+            "title": "Android Engineer",
+            "category": "Mobile",
+            "experience_level": "Mid-level",
+            "description": "Design and develop Android applications with a focus on performance, usability, and reliability. Integrate with REST APIs and backend services. Publish and maintain apps on the Google Play Store.",
+            "required_skills": [
+                "kotlin", "java", "android", "rest api", "git",
+                "sqlite", "android studio", "object oriented programming", "ui design", "mvvm"
+            ],
+            "nice_to_have_skills": [
+                "jetpack compose", "firebase", "react native", "flutter", "ci/cd"
+            ]
+        },
+        {
+            "id": "ios_engineer",
+            "title": "iOS Engineer",
+            "category": "Mobile",
+            "experience_level": "Mid-level",
+            "description": "Build and maintain iOS applications using Swift and Apple frameworks. Ensure smooth UX across iPhone and iPad devices. Work closely with designers and backend engineers.",
+            "required_skills": [
+                "swift", "ios", "xcode", "rest api", "git",
+                "object oriented programming", "ui design", "mvvm", "cocoapods", "apple frameworks"
+            ],
+            "nice_to_have_skills": [
+                "objective-c", "firebase", "react native", "flutter", "ci/cd"
+            ]
+        },
+
+        {
+            "id": "security_engineer",
+            "title": "Security Engineer",
+            "category": "Security",
+            "experience_level": "Mid-level",
+            "description": "Design and implement security controls, tools, and processes to protect systems and data. Perform threat modeling, vulnerability assessments, and penetration testing. Respond to security incidents and improve overall posture.",
+            "required_skills": [
+                "python", "linux", "networking", "penetration testing", "cryptography",
+                "security", "bash", "git", "vulnerability assessment", "siem"
+            ],
+            "nice_to_have_skills": [
+                "aws security", "kubernetes security", "burp suite", "splunk", "zero trust"
+            ]
+        },
+        {
+            "id": "appsec_engineer",
+            "title": "Application Security Engineer",
+            "category": "Security",
+            "experience_level": "Mid-level",
+            "description": "Embed security into the software development lifecycle. Review code for vulnerabilities, integrate security testing into CI/CD pipelines, and educate developers on secure coding practices.",
+            "required_skills": [
+                "python", "javascript", "security", "penetration testing", "owasp",
+                "git", "ci/cd", "code review", "vulnerability assessment", "linux"
+            ],
+            "nice_to_have_skills": [
+                "burp suite", "sast", "dast", "docker security", "threat modeling"
+            ]
+        },
+
+        {
+            "id": "product_manager",
+            "title": "Product Manager",
+            "category": "Product & Management",
+            "experience_level": "Mid-level",
+            "description": "Define product vision, strategy, and roadmap. Work with engineering, design, and business stakeholders to deliver customer value. Prioritize features based on data and user feedback.",
+            "required_skills": [
+                "product management", "agile", "scrum", "jira", "data analysis",
+                "user research", "roadmap planning", "stakeholder management", "figma", "sql"
+            ],
+            "nice_to_have_skills": [
+                "python", "a/b testing", "tableau", "google analytics", "okrs"
+            ]
+        },
+        {
+            "id": "tpm",
+            "title": "Technical Program Manager",
+            "category": "Product & Management",
+            "experience_level": "Senior",
+            "description": "Lead large-scale technical programs across multiple engineering teams. Manage risks, dependencies, timelines, and stakeholder communication. Drive alignment between technical and business objectives.",
+            "required_skills": [
+                "program management", "agile", "scrum", "jira", "system design",
+                "stakeholder management", "risk management", "roadmap planning", "ci/cd", "git"
+            ],
+            "nice_to_have_skills": [
+                "python", "data analysis", "okrs", "sql", "cloud computing"
+            ]
+        },
+        {
+            "id": "engineering_manager",
+            "title": "Engineering Manager",
+            "category": "Product & Management",
+            "experience_level": "Senior",
+            "description": "Lead and grow a team of software engineers. Set technical direction, manage performance, and foster a culture of excellence. Balance people management with technical decision-making.",
+            "required_skills": [
+                "leadership", "agile", "scrum", "system design", "software engineering",
+                "stakeholder management", "code review", "hiring", "jira", "ci/cd"
+            ],
+            "nice_to_have_skills": [
+                "python", "java", "okrs", "data analysis", "cloud computing"
+            ]
+        },
+
+        {
+            "id": "blockchain_engineer",
+            "title": "Blockchain Engineer",
+            "category": "Emerging & Specialist",
+            "experience_level": "Mid-level",
+            "description": "Design and develop decentralized applications and smart contracts. Build blockchain infrastructure and integrate with DeFi protocols. Ensure security and correctness of on-chain logic.",
+            "required_skills": [
+                "solidity", "ethereum", "javascript", "python", "smart contracts",
+                "web3.js", "cryptography", "git", "rest api", "node.js"
+            ],
+            "nice_to_have_skills": [
+                "rust", "go", "ipfs", "hardhat", "defi protocols"
+            ]
+        },
+        {
+            "id": "game_developer",
+            "title": "Game Developer",
+            "category": "Emerging & Specialist",
+            "experience_level": "Mid-level",
+            "description": "Design and develop video games across PC, console, or mobile platforms. Implement game mechanics, physics, rendering, and AI systems. Optimize for performance and player experience.",
+            "required_skills": [
+                "c++", "c#", "unity", "unreal engine", "game design",
+                "object oriented programming", "algorithms", "physics simulation", "git", "opengl"
+            ],
+            "nice_to_have_skills": [
+                "python", "shader programming", "networking", "mobile games", "vr"
+            ]
+        },
+        {
+            "id": "qa_engineer",
+            "title": "QA/Test Engineer",
+            "category": "Emerging & Specialist",
+            "experience_level": "Mid-level",
+            "description": "Design and execute test plans to ensure software quality. Build automated test frameworks and integrate testing into CI/CD pipelines. Identify, track, and verify defects.",
+            "required_skills": [
+                "python", "selenium", "test automation", "ci/cd", "git",
+                "jira", "sql", "rest api", "manual testing", "agile"
+            ],
+            "nice_to_have_skills": [
+                "javascript", "cypress", "postman", "performance testing", "docker"
+            ]
+        },
+        {
+            "id": "uiux_engineer",
+            "title": "UI/UX Engineer",
+            "category": "Emerging & Specialist",
+            "experience_level": "Mid-level",
+            "description": "Bridge the gap between design and engineering by implementing pixel-perfect, accessible UI components. Collaborate with designers to create smooth user experiences and maintain design systems.",
+            "required_skills": [
+                "javascript", "typescript", "react", "html", "css",
+                "figma", "tailwind css", "responsive design", "accessibility", "git"
+            ],
+            "nice_to_have_skills": [
+                "next.js", "storybook", "animation", "vue", "design systems"
+            ]
+        },
+        {
+            "id": "arvr_engineer",
+            "title": "AR/VR Engineer",
+            "category": "Emerging & Specialist",
+            "experience_level": "Mid-level",
+            "description": "Develop augmented and virtual reality applications and experiences. Build spatial computing features using AR/VR SDKs and 3D rendering engines. Optimize for low latency and high frame rates.",
+            "required_skills": [
+                "c#", "unity", "c++", "unreal engine", "opengl",
+                "3d modeling", "computer vision", "git", "object oriented programming", "algorithms"
+            ],
+            "nice_to_have_skills": [
+                "arkit", "arcore", "webxr", "spatial audio", "shader programming"
+            ]
+        }
+    ]
+}
