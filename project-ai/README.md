@@ -1,3 +1,51 @@
+# Smart Mock Interview Tool — AI Module
+
+The AI module handles four things: parsing resumes, generating interview questions, scoring resumes against job descriptions, and evaluating candidate answers. It's written in Python and uses the Groq API for LLM calls.
+
+---
+
+## Team
+
+- **AI/ML** — This module (Python)
+- **Backend** — Java Spring Boot, calls functions from this module
+- **Frontend** — Talks to the backend, never touches this module directly
+
+---
+
+## Setup
+
+You need Python 3.10+ and pip installed.
+
+```bash
+# 1. Go into the project folder
+cd project-ai
+
+# 2. Create and activate a virtual environment
+python -m venv .venv
+
+# Windows
+.\.venv\Scripts\Activate.ps1
+# Mac/Linux
+source .venv/bin/activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Set up your API key
+copy .env.example .env       # Windows
+cp .env.example .env         # Mac/Linux
+```
+
+Open `.env` and add your Groq API key:
+```
+GROQ_API_KEY=your_key_here
+```
+
+Get a free key at https://console.groq.com
+
+> Never push `.env` to GitHub. It's already in `.gitignore`.
+
+---
 # Smart Resume Analyzer — AI Module
 
 The AI module handles resume parsing and resume vs. job role analysis. It is written in Python and uses the Groq API (free tier) for LLM calls. The backend calls functions from this module — the frontend never touches it directly.
